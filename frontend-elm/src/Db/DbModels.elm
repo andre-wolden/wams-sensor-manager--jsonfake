@@ -119,5 +119,18 @@ type alias StatusLogItem =
     }
 
 
+type alias SensorDbLoaded =
+    { sensors : Sensors
+    , part_numbers : PartNumbers
+    , sensor_types : SensorTypes
+    , projects : Projects
+    , customers : Customers
+    , status_codes : StatusCodes
+    , mounting_locations : MountingLocations
+    , operators : Operators
+    , status_log : StatusLog
+    }
+
+
 
 -- END

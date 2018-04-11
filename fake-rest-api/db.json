@@ -1,110 +1,137 @@
 {
-  "sensors" : [
+  "sensors": [
     {
-      "id" : 1,
-      "sn" : "SN001",
-      "pn" :  1,
-      "sensor_type" : 1,
-      "calibration_certificate" : "doc_cc_sn001",
-      "project" : 1,
-      "current_status" : 1,
-      "mounting_location" : 1
+      "id": 1,
+      "sn": "SN001",
+      "pn": 1,
+      "sensor_type": 1,
+      "calibration_certificate": "doc_cc_sn001",
+      "project": 1,
+      "current_status": 1,
+      "mounting_location": 1
     },
     {
-      "id" : 2,
-      "sn" : "SN002",
-      "pn" :  1,
-      "sensor_type" : 1,
-      "calibration_certificate" : "doc_cc_sn002",
-      "project" : 1,
-      "current_status" : 1,
-      "mounting_location" : 1
+      "id": 2,
+      "sn": "SN002",
+      "pn": 1,
+      "sensor_type": 1,
+      "calibration_certificate": "doc_cc_sn002",
+      "project": 1,
+      "current_status": 1,
+      "mounting_location": 1
     },
     {
-      "id" : 3,
-      "sn" : "SN003",
-      "pn" :  1,
-      "sensor_type" : 1,
-      "calibration_certificate" : "na",
-      "project" : 1,
-      "current_status" : 1,
-      "mounting_location" : 1
+      "id": 3,
+      "sn": "SN003",
+      "pn": 1,
+      "sensor_type": 1,
+      "calibration_certificate": "doc_cc_sn003",
+      "project": 1,
+      "current_status": 1,
+      "mounting_location": 1
     }
   ],
   "part_numbers": [
     {
-      "id" : 1,
-      "pn" : "P6000121001",
-      "calibration_procedure" : "doc_proc_1"
+      "id": 1,
+      "pn": "P6000121001",
+      "calibration_procedure": "doc_proc_1"
     }
   ],
   "sensor_types": [
     {
-      "id" : 1,
-      "description" : "Inclinometer"
+      "id": 1,
+      "description": "Inclinometer"
     },
     {
-      "id" : 2,
-      "description" : "Strain Gauge"
+      "id": 2,
+      "description": "Strain Gauge"
     }
   ],
-  "projects" : [
+  "projects": [
     {
-      "id" : 1,
-      "name" : "Statfjord",
+      "id": 1,
+      "name": "Statfjord",
+      "customer": 1
+    },
+    {
+      "id": 2,
+      "name": "Snorre B",
+      "customer": 1
+    },
+    {
+      "id": 3,
+      "name": "Wheatstone",
+      "customer": 2
+    },
+    {
+      "id": 4,
+      "name": "Maria",
       "customer": 1
     }
   ],
-  "customers" : [
+  "customers": [
     {
-      "id" : 1,
-      "name" : "Statoil"
+      "id": 1,
+      "name": "Statoil"
+    },
+    {
+      "id": 2,
+      "name": "Chevron"
+    },
+    {
+      "id": 3,
+      "name": "ByggMakker"
     }
   ],
-  "mounting_locations" : [
+  "mounting_locations": [
     {
-      "id" : 1,
-      "description" : "TJ"
+      "id": 1,
+      "description": "TJ"
     }
   ],
-  "status_codes" : [
+  "status_codes": [
     {
-      "id" : 1,
-      "step" : 1,
-      "current_status" : "Registered",
+      "id": 1,
+      "step": 1,
+      "current_status": "Registered",
       "next_action": "Approve Supplier FAT"
     }
   ],
-  "operators" : [
+  "operators": [
     {
-      "id" : 1,
-      "name" : "Karsten"
+      "id": 1,
+      "name": "Karsten"
     },
     {
-      "id" : 2,
-      "name" : "Andre"
+      "id": 2,
+      "name": "Andre"
+    },
+    {
+      "id": 3,
+      "name": "Sveinung"
     }
   ],
-  "status_log" : [
+  "status_log": [
     {
-      "id" : 1,
-      "sensor_id" : 1,
-      "status_code_id" : 1,
-      "operator_id" : 1,
+      "id": 1,
+      "sensor_id": 1,
+      "status_code_id": 1,
+      "operator_id": 1,
       "time": "DateTime.now()"
     },
     {
-      "id" : 2,
-      "sensor_id" : 2,
-      "status_code_id" : 1,
-      "operator_id" : 1,
+      "id": 2,
+      "sensor_id": 2,
+      "status_code_id": 1,
+      "operator_id": 1,
       "time": "DateTime.now()"
     },
     {
-      "id" : 3,
-      "sensor_id" : 3,
-      "status_code_id" : 1,
-      "operator_id" : 1,
+      "id": 3,
+      "sensor_id": 3,
+      "status_code_id": 1,
+      "operator_id": 1,
       "time": "DateTime.now()"
     }
   ]

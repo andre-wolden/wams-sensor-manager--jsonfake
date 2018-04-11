@@ -35,6 +35,6 @@ module.exports = merge(common, {
         inline: true,
         historyApiFallback: true,
         stats: { colors: true },
-        contentBase: './src',
+        contentBase: ['./src', path.join(__dirname, "assets")],
     },
 });

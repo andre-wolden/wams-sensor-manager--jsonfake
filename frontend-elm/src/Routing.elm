@@ -9,8 +9,18 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map Home top
+        , map ProjectsRoute (s "projects")
+        , map ProjectRoute (s "project" </> string)
+        , map ProjectNewRoute (s "projects" </> s "new")
+        , map CustomersRoute (s "customers")
+        , map CustomerRoute (s "customer" </> string)
+        , map CustomerNewRoute (s "customers" </> s "new")
+        , map CustomerNewRegisteredRoute (s "customers" </> s "registered")
         , map OperatorsRoute (s "operators")
         , map OperatorRoute (s "operator" </> string)
+        , map OperatorNewRoute (s "operators" </> s "new")
+        , map Index (s "index")
+        , map OopeSomethingWentWrongRoute (s "oops")
         ]
 
 
@@ -22,3 +32,38 @@ parseLocation location =
 
         Nothing ->
             NotFoundRoute
+
+
+getIndexPath : String
+getIndexPath =
+    "#index"
+
+
+getSensorsPath : String
+getSensorsPath =
+    "#sensors"
+
+
+getProjectsPath : String
+getProjectsPath =
+    "#projects"
+
+
+getProjectNewRoute : String
+getProjectNewRoute =
+    "#projects/new"
+
+
+getCustomersPath : String
+getCustomersPath =
+    "#customers"
+
+
+getCustomerNewPath : String
+getCustomerNewPath =
+    "#customers/new"
+
+
+getOperatorsPath : String
+getOperatorsPath =
+    "#operators"

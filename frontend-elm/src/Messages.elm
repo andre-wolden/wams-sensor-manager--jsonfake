@@ -3,6 +3,7 @@ module Messages exposing (..)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
 import Db.DbModels exposing (..)
+import Http exposing (Error)
 
 
 type Msg
@@ -19,3 +20,16 @@ type Msg
     | MountingLocationsResponse (WebData MountingLocations)
     | OperatorsResponse (WebData Operators)
     | StatusLogResponse (WebData StatusLog)
+      -- Saving New Project
+    | OnInputNewProject_Name String
+    | SaveNewProject Project
+    | OnProjectSaved (Result Http.Error Project)
+      -- Saving New Customer
+    | OnInputNewCustomer_Name String
+    | SaveNewCustomer Operator
+    | OnCustomerSaved (Result Http.Error Customer)
+    | NewCustomerRegistered
+      -- Saving New Operator
+    | OnInputNewOperator_Name String
+    | SaveNewOperator Operator
+    | OnOperatorSaved (Result Http.Error Operator)
