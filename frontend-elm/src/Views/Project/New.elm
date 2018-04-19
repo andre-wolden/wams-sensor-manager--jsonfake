@@ -8,14 +8,26 @@ import Db.DbModels exposing (Project)
 import Db.DbModels exposing (..)
 import Models exposing (..)
 import RemoteData
+import Bootstrap.CDN as CDN
+import Bootstrap.Grid as Grid
+import Bootstrap.Form.Radio as Radio
+import Routing
 
 
 viewNewProject : Model -> Html Msg
 viewNewProject model =
-    div []
+    div [ class "container" ]
         [ h3 [ class "row" ] [ text "New Project" ]
         , div [ class "form-group", id "NewProjectForm" ]
-            [ input [ class "form-control", placeholder "name...", onInput OnInputNewProject_Name ] []
+            [ label [] [ text "Project name:" ]
+            , input
+                [ class "form-control"
+                , placeholder "name..."
+                , onInput OnInputNewProject_Name
+                ]
+                []
+            , p [] []
+            , label [] [ text "Select customer:" ]
             , div []
                 (case model.db.customers of
                     RemoteData.NotAsked ->
@@ -28,8 +40,10 @@ viewNewProject model =
                         [ text ("Failed to retrieve data. Error message: " ++ (toString error)) ]
 
                     RemoteData.Success customers ->
-                        List.map func customers
+                        Radio.radioList "myradios" (List.map func customers)
                 )
+            , p [] []
+            , a [ class "btn btn-danger", href Routing.getProjectsPath ] [ text "back" ]
             , button
                 [ class "btn btn-primary"
                 , onClick (SaveNewProject model.new_project)
@@ -40,14 +54,9 @@ viewNewProject model =
         ]
 
 
-func : Customer -> Html Msg
+func : Customer -> Radio.Radio Msg
 func customer =
-    fieldset []
-        [ label []
-            [ input [ type_ "radio" ] []
-            , text customer.name
-            ]
-        ]
+    Radio.create [ Radio.onClick (OnInputNewProject_CustomerId customer.id) ] customer.name
 
 
 

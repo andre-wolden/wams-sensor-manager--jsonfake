@@ -32,6 +32,7 @@ projectEncoder project =
         attributes =
             [ ( "id", Encode.int project.id )
             , ( "name", Encode.string project.name )
+            , ( "customer", Encode.int project.customer )
             ]
     in
         Encode.object attributes

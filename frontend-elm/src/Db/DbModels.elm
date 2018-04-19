@@ -1,6 +1,7 @@
 module Db.DbModels exposing (..)
 
 import RemoteData exposing (WebData)
+import StatusCodes.StatusCodes as StatusCodes
 
 
 type alias SensorDb =

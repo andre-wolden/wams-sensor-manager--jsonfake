@@ -43,7 +43,6 @@ viewAllProjects projects customers =
                 RemoteData.Success customers ->
                     div []
                         [ getProjectsTable projects customers
-                        , a [ class "btn btn-success", href Routing.getProjectNewRoute ] [ text "Add new project" ]
                         ]
 
 
@@ -59,6 +58,7 @@ getProjectsTable projects customers =
                 ]
             , tbody [] (insertRows projects customers)
             ]
+        , a [ class "btn btn-success", href Routing.getProjectNewRoute ] [ text "Add new project" ]
         ]
 
 

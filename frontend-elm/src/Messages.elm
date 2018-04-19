@@ -20,8 +20,14 @@ type Msg
     | MountingLocationsResponse (WebData MountingLocations)
     | OperatorsResponse (WebData Operators)
     | StatusLogResponse (WebData StatusLog)
+      -- Saving New Part PartNumber
+    | OnInputNewPartNumber_PartNumber String
+    | OnInputNewPartNumber_CalibrationProcedure String
+    | SaveNewPartNumber PartNumber
+    | OnPartNumberSaved (Result Http.Error PartNumber)
       -- Saving New Project
     | OnInputNewProject_Name String
+    | OnInputNewProject_CustomerId Int
     | SaveNewProject Project
     | OnProjectSaved (Result Http.Error Project)
       -- Saving New Customer

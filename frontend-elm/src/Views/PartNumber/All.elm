@@ -1,17 +1,17 @@
-module Views.Customer.All exposing (..)
+module Views.PartNumber.All exposing (..)
 
 import Db.DbModels exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import RemoteData exposing (WebData)
-import Views.Customer.Common exposing (..)
+import Views.PartNumber.Common exposing (..)
 import Routing
 
 
-viewAllCustomers : WebData Customers -> Html Msg
-viewAllCustomers customers =
-    case customers of
+viewAllPartNumbers : WebData PartNumbers -> Html Msg
+viewAllPartNumbers partNumbers =
+    case partNumbers of
         RemoteData.NotAsked ->
             text "Initialising..."
 
@@ -21,34 +21,34 @@ viewAllCustomers customers =
         RemoteData.Failure error ->
             text ("Failed to retrieve data. Error message: " ++ (toString error))
 
-        RemoteData.Success customers ->
-            insertContent customers
+        RemoteData.Success partNumbers ->
+            insertContent partNumbers
 
 
-insertContent : Customers -> Html Msg
-insertContent customers =
+insertContent : PartNumbers -> Html Msg
+insertContent partNumbers =
     div [ class "container" ]
         [ table [ class "table" ]
             [ thead []
                 [ tr [ class "row" ]
-                    [ th [ class "col" ] [ text "Customer" ]
+                    [ th [ class "col" ] [ text "PartNumber" ]
                     ]
                 ]
-            , tbody [] (insertRows customers)
+            , tbody [] (insertRows partNumbers)
             ]
-        , a [ class "btn btn-success", href Routing.getCustomerNewPath ] [ text "Add new customer" ]
+        , a [ class "btn btn-success", href Routing.getPartNumberNewPath ] [ text "Add new partNumber" ]
         ]
 
 
-insertRows : Customers -> List (Html Msg)
-insertRows customers =
+insertRows : PartNumbers -> List (Html Msg)
+insertRows partNumbers =
     (List.map
         (\p ->
             tr [ class "row" ]
-                [ td [ class "col" ] [ text p.name ]
+                [ td [ class "col" ] [ text p.pn ]
                 ]
         )
-        customers
+        partNumbers
     )
 
 

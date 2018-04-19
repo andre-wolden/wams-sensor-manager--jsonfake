@@ -94,67 +94,69 @@ insertSensorTable model =
 
 createTable : Sensors -> PartNumbers -> SensorTypes -> Projects -> StatusCodes -> Html Msg
 createTable sensors partNumbers types projects statuses =
-    table [ class "table" ]
-        [ thead []
-            [ tr [ class "row" ]
-                [ th [ class "col" ] [ text "SN" ]
-                , th [ class "col" ] [ text "PN" ]
-                , th [ class "col" ] [ text "Type" ]
-                , th [ class "col" ] [ text "Certificate" ]
-                , th [ class "col" ] [ text "Project" ]
-                , th [ class "col" ] [ text "Status" ]
+    div []
+        [ table [ id "mainTable", class "table" ]
+            [ thead []
+                [ tr [ class "row" ]
+                    [ th [ class "col" ] [ text "SN" ]
+                    , th [ class "col" ] [ text "PN" ]
+                    , th [ class "col" ] [ text "Type" ]
+                    , th [ class "col" ] [ text "Certificate" ]
+                    , th [ class "col" ] [ text "Project" ]
+                    , th [ class "col" ] [ text "Status" ]
+                    ]
                 ]
-            ]
-        , tbody []
-            (List.map
-                (\sensor ->
-                    tr [ class "row" ]
-                        [ td [ class "col" ] [ text sensor.sn ]
-                        , td [ class "col" ]
-                            (List.map
-                                (\pn ->
-                                    if pn.id == sensor.pn then
-                                        text pn.pn
-                                    else
-                                        text ""
+            , tbody []
+                (List.map
+                    (\sensor ->
+                        tr [ class "row" ]
+                            [ td [ class "col" ] [ text sensor.sn ]
+                            , td [ class "col" ]
+                                (List.map
+                                    (\pn ->
+                                        if pn.id == sensor.pn then
+                                            text pn.pn
+                                        else
+                                            text ""
+                                    )
+                                    partNumbers
                                 )
-                                partNumbers
-                            )
-                        , td [ class "col" ]
-                            (List.map
-                                (\typee ->
-                                    if typee.id == sensor.sensor_type then
-                                        text typee.sensor_type
-                                    else
-                                        text ""
+                            , td [ class "col" ]
+                                (List.map
+                                    (\typee ->
+                                        if typee.id == sensor.sensor_type then
+                                            text typee.sensor_type
+                                        else
+                                            text ""
+                                    )
+                                    types
                                 )
-                                types
-                            )
-                        , td [] [ text sensor.calibration_certificate ]
-                        , td [ class "col" ]
-                            (List.map
-                                (\project ->
-                                    if project.id == sensor.project then
-                                        text project.name
-                                    else
-                                        text ""
+                            , td [ class "col" ] [ text sensor.calibration_certificate ]
+                            , td [ class "col" ]
+                                (List.map
+                                    (\project ->
+                                        if project.id == sensor.project then
+                                            text project.name
+                                        else
+                                            text ""
+                                    )
+                                    projects
                                 )
-                                projects
-                            )
-                        , td [ class "col" ]
-                            (List.map
-                                (\status ->
-                                    if status.id == sensor.current_status then
-                                        text status.current_status
-                                    else
-                                        text ""
+                            , td [ class "col" ]
+                                (List.map
+                                    (\status ->
+                                        if status.id == sensor.current_status then
+                                            text status.current_status
+                                        else
+                                            text ""
+                                    )
+                                    statuses
                                 )
-                                statuses
-                            )
-                        ]
+                            ]
+                    )
+                    sensors
                 )
-                sensors
-            )
+            ]
         ]
 
 

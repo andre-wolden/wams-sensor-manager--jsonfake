@@ -4,6 +4,7 @@ import Models exposing (..)
 import Messages exposing (Msg)
 import Routing exposing (parseLocation)
 import Commands
+import Commands.PartNumberCommands
 import Commands.ProjectCommands
 import Commands.CustomerCommands
 import Commands.OperatorCommands
@@ -115,6 +116,46 @@ update msg model =
             in
                 ( { model | db = newDb }, Cmd.none )
 
+        -- PartNumber
+        Messages.OnInputNewPartNumber_PartNumber string ->
+            let
+                part_number =
+                    model.new_part_number
+
+                updated_new_part_number =
+                    { part_number | pn = string }
+            in
+                ( { model | new_part_number = updated_new_part_number }, Cmd.none )
+
+        Messages.OnInputNewPartNumber_CalibrationProcedure string ->
+            let
+                part_number =
+                    model.new_part_number
+
+                updated_new_part_number =
+                    { part_number | calibration_procedure = string }
+            in
+                ( { model | new_part_number = updated_new_part_number }, Cmd.none )
+
+        Messages.SaveNewPartNumber new_partnumber ->
+            ( { model
+                | debugMessage = (new_partnumber.pn)
+                , route = PartNumbersRoute
+              }
+            , Commands.PartNumberCommands.savePartNumber new_partnumber
+            )
+
+        Messages.OnPartNumberSaved (Ok response) ->
+            ( { model
+                | debugMessage = (toString response)
+                , route = PartNumbersRoute
+              }
+            , Commands.fetchPartNumbersData
+            )
+
+        Messages.OnPartNumberSaved (Err error) ->
+            ( { model | debugMessage = (toString error) }, Cmd.none )
+
         -- Project
         Messages.OnInputNewProject_Name updated_name ->
             let
@@ -126,11 +167,21 @@ update msg model =
             in
                 ( { model | new_project = updated, debugMessage = updated_name }, Cmd.none )
 
+        Messages.OnInputNewProject_CustomerId int ->
+            let
+                old =
+                    model.new_project
+
+                updated =
+                    { old | customer = int }
+            in
+                ( { model | new_project = updated }, Cmd.none )
+
         Messages.SaveNewProject project ->
             ( { model | debugMessage = (project.name) }, Commands.ProjectCommands.saveProject project )
 
         Messages.OnProjectSaved (Ok response) ->
-            ( model, Cmd.none )
+            ( { model | route = ProjectsRoute }, Commands.fetchProjectsData )
 
         Messages.OnProjectSaved (Err error) ->
             ( model, Cmd.none )
@@ -157,7 +208,7 @@ update msg model =
         Messages.OnCustomerSaved (Ok response) ->
             ( { model
                 | debugMessage = (toString response)
-                , route = CustomerNewRegisteredRoute
+                , route = CustomersRoute
               }
             , Commands.fetchCustomersData
             )
@@ -185,7 +236,7 @@ update msg model =
             ( { model | debugMessage = (operator.name) }, Commands.OperatorCommands.saveOperator operator )
 
         Messages.OnOperatorSaved (Ok response) ->
-            ( model, Cmd.none )
+            ( { model | route = OperatorsRoute }, Commands.fetchOperatorsData )
 
         Messages.OnOperatorSaved (Err error) ->
             ( model, Cmd.none )

@@ -5,6 +5,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (Msg)
 import Views.Sensor.All
+import Views.PartNumber.All
+import Views.PartNumber.New
 import Views.Project.ById
 import Views.Project.All
 import Views.Project.New
@@ -42,7 +44,7 @@ view model =
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getCustomersPath ] [ text "Customers" ] ]
                     , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "PNs" ] ]
+                        [ a [ class "nav-link text-light", href Routing.getPartNumberPath ] [ text "PNs" ] ]
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getOperatorsPath ] [ text "Operators" ] ]
                     , li [ class "nav-item active" ]
@@ -50,19 +52,20 @@ view model =
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Codes" ] ]
                     , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Log" ] ]
-                    , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Mounting" ] ]
+                    , li [ class "nav-item active" ]
+                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Log" ] ]
                     ]
                 ]
             ]
         , div [ id "page" ]
             [ page model
             ]
-        , div [ class "push-to-bottom jumbotron" ]
-            [ p [] [ text (toString model.db) ]
-            , p [] [ text model.debugMessage ]
-            ]
+
+        -- , div [ class "push-to-bottom jumbotron" ]
+        --     [ p [] [ text (toString model.db) ]
+        --     , p [] [ text model.debugMessage ]
+        --     ]
         ]
 
 
@@ -70,7 +73,7 @@ page : Model -> Html Msg
 page model =
     case model.route of
         Models.Home ->
-            div [ class "col-10" ]
+            div []
                 [ ul [ class "list-group list-group-flush" ]
                     [ li [ class "list-group-item" ]
                         [ a [ class "text-dark", href Routing.getCustomersPath ]
@@ -108,6 +111,13 @@ page model =
                 , p [] []
                 , Views.Sensor.All.insertSensorTable model
                 ]
+
+        -- PartNumbers
+        Models.PartNumbersRoute ->
+            Views.PartNumber.All.viewAllPartNumbers model.db.part_numbers
+
+        Models.PartNumbersNewRoute ->
+            Views.PartNumber.New.viewNewPartNumber model
 
         -- Project
         Models.ProjectsRoute ->

@@ -9,6 +9,8 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map Home top
+        , map PartNumbersRoute (s "partnumbers")
+        , map PartNumbersNewRoute (s "partnumbers" </> s "new")
         , map ProjectsRoute (s "projects")
         , map ProjectRoute (s "project" </> string)
         , map ProjectNewRoute (s "projects" </> s "new")
@@ -67,3 +69,18 @@ getCustomerNewPath =
 getOperatorsPath : String
 getOperatorsPath =
     "#operators"
+
+
+getPartNumberPath : String
+getPartNumberPath =
+    "#partnumbers"
+
+
+getPartNumberNewPath : String
+getPartNumberNewPath =
+    "#partnumbers/new"
+
+
+getOperatorNewPath : String
+getOperatorNewPath =
+    "#operators/new"

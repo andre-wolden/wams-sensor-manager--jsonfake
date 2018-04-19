@@ -17,6 +17,7 @@ type alias Model =
     -- , new_sensor : Sensor
     -- , new_part_number : PartNumber
     -- , new_sensor_type : SensorType
+    , new_part_number : PartNumber
     , new_project : Project
     , new_customer : Customer
 
@@ -42,6 +43,7 @@ initialModel route =
     -- , new_sensor = Sensor
     -- , new_part_number = PartNumber
     -- , new_sensor_type = SensorType
+    , new_part_number = { id = 0, pn = "", calibration_procedure = "" }
     , new_project = { id = 0, name = "", customer = 0 }
     , new_customer = { id = 0, name = "" }
 
@@ -85,6 +87,8 @@ initialDbLoaded =
 
 type Route
     = Home
+    | PartNumbersRoute
+    | PartNumbersNewRoute
     | ProjectsRoute
     | ProjectRoute String
     | ProjectNewRoute
