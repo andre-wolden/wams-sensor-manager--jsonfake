@@ -117,8 +117,8 @@ createTable sensors partNumbers types projects statuses model =
                             in
                                 div []
                                     [ div [ class "row expandableRow", onClick (ExpandRow sensor.id) ]
-                                        [ div [ class "col" ] [ text sensor.sn ]
-                                        , div [ class "col" ]
+                                        [ div [ class "inline_block" ] [ text sensor.sn ]
+                                        , div [ class "inline_block" ]
                                             (List.map
                                                 (\pn ->
                                                     if pn.id == sensor.pn then
@@ -128,7 +128,7 @@ createTable sensors partNumbers types projects statuses model =
                                                 )
                                                 partNumbers
                                             )
-                                        , div [ class "col" ]
+                                        , div [ class "inline_block" ]
                                             (List.map
                                                 (\typee ->
                                                     if typee.id == sensor.sensor_type then
@@ -138,8 +138,8 @@ createTable sensors partNumbers types projects statuses model =
                                                 )
                                                 types
                                             )
-                                        , div [ class "col" ] [ text sensor.calibration_certificate ]
-                                        , div [ class "col" ]
+                                        , div [ class "inline_block" ] [ text sensor.calibration_certificate ]
+                                        , div [ class "inline_block" ]
                                             (List.map
                                                 (\project ->
                                                     if project.id == sensor.project then
@@ -149,7 +149,7 @@ createTable sensors partNumbers types projects statuses model =
                                                 )
                                                 projects
                                             )
-                                        , div [ class "col" ]
+                                        , div [ class "inline_block" ]
                                             (List.map
                                                 (\status ->
                                                     if status.id == sensor.current_status then
@@ -159,7 +159,7 @@ createTable sensors partNumbers types projects statuses model =
                                                 )
                                                 statuses
                                             )
-                                        , i [ class "col", class w_sign ] []
+                                        , i [ class w_sign ] []
                                         ]
                                     , div [ class "row dropDownInfoBox", class w_class_name ]
                                         [ SS.insertStatusDrawing model w_class_name sensor

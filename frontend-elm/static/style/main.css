@@ -117,7 +117,7 @@
 .horizontal_scrollable_container {
 	white-space: nowrap;
 	overflow-x: scroll;
-	width: 500px;
+	width: 700px;
 }
 
 .inline_block {
