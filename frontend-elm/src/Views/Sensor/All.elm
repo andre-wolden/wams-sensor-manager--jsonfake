@@ -87,90 +87,93 @@ insertSensorTable model =
 createTable : Sensors -> PartNumbers -> SensorTypes -> Projects -> List SC.StatusCode -> Model -> Html Msg
 createTable sensors partNumbers types projects statuses model =
     div []
-        (List.append
+        [ div [ class "horizontal_scrollable_container" ]
             (List.append
-                [ div [ class "row tableHeader" ]
-                    [ div [ class "col" ] [ text "SN" ]
-                    , div [ class "col" ] [ text "PN" ]
-                    , div [ class "col" ] [ text "Type" ]
-                    , div [ class "col" ] [ text "Certificate" ]
-                    , div [ class "col" ] [ text "Project" ]
-                    , div [ class "col" ] [ text "Status" ]
-                    , div [ class "col" ] []
+                (List.append
+                    [ div []
+                        [ div [ class "inline_block" ] [ text "SN" ]
+                        , div [ class "inline_block" ] [ text "PN" ]
+                        , div [ class "inline_block" ] [ text "Type" ]
+                        , div [ class "inline_block" ] [ text "Certificate" ]
+                        , div [ class "inline_block" ] [ text "Project" ]
+                        , div [ class "inline_block" ] [ text "Status" ]
+                        , div [ class "inline_block" ] []
+                        ]
                     ]
-                ]
-                (List.map
-                    (\sensor ->
-                        let
-                            w_class_name =
-                                if sensor.id == model.expandedRow then
-                                    "w_show"
-                                else
-                                    "w_hidden"
+                    (List.map
+                        (\sensor ->
+                            let
+                                w_class_name =
+                                    if sensor.id == model.expandedRow then
+                                        "w_show"
+                                    else
+                                        "w_hidden"
 
-                            w_sign =
-                                if sensor.id == model.expandedRow then
-                                    "fa fa-minus"
-                                else
-                                    "fa fa-plus"
-                        in
-                            div []
-                                [ div [ class "row expandableRow", onClick (ExpandRow sensor.id) ]
-                                    [ div [ class "col" ] [ text sensor.sn ]
-                                    , div [ class "col" ]
-                                        (List.map
-                                            (\pn ->
-                                                if pn.id == sensor.pn then
-                                                    text pn.pn
-                                                else
-                                                    text ""
+                                w_sign =
+                                    if sensor.id == model.expandedRow then
+                                        "fa fa-minus"
+                                    else
+                                        "fa fa-plus"
+                            in
+                                div []
+                                    [ div [ class "row expandableRow", onClick (ExpandRow sensor.id) ]
+                                        [ div [ class "col" ] [ text sensor.sn ]
+                                        , div [ class "col" ]
+                                            (List.map
+                                                (\pn ->
+                                                    if pn.id == sensor.pn then
+                                                        text pn.pn
+                                                    else
+                                                        text ""
+                                                )
+                                                partNumbers
                                             )
-                                            partNumbers
-                                        )
-                                    , div [ class "col" ]
-                                        (List.map
-                                            (\typee ->
-                                                if typee.id == sensor.sensor_type then
-                                                    text typee.sensor_type
-                                                else
-                                                    text ""
+                                        , div [ class "col" ]
+                                            (List.map
+                                                (\typee ->
+                                                    if typee.id == sensor.sensor_type then
+                                                        text typee.sensor_type
+                                                    else
+                                                        text ""
+                                                )
+                                                types
                                             )
-                                            types
-                                        )
-                                    , div [ class "col" ] [ text sensor.calibration_certificate ]
-                                    , div [ class "col" ]
-                                        (List.map
-                                            (\project ->
-                                                if project.id == sensor.project then
-                                                    text project.name
-                                                else
-                                                    text ""
+                                        , div [ class "col" ] [ text sensor.calibration_certificate ]
+                                        , div [ class "col" ]
+                                            (List.map
+                                                (\project ->
+                                                    if project.id == sensor.project then
+                                                        text project.name
+                                                    else
+                                                        text ""
+                                                )
+                                                projects
                                             )
-                                            projects
-                                        )
-                                    , div [ class "col" ]
-                                        (List.map
-                                            (\status ->
-                                                if status.id == sensor.current_status then
-                                                    text status.status_description
-                                                else
-                                                    text ""
+                                        , div [ class "col" ]
+                                            (List.map
+                                                (\status ->
+                                                    if status.id == sensor.current_status then
+                                                        text status.status_description
+                                                    else
+                                                        text ""
+                                                )
+                                                statuses
                                             )
-                                            statuses
-                                        )
-                                    , i [ class "col", class w_sign ] []
+                                        , i [ class "col", class w_sign ] []
+                                        ]
+                                    , div [ class "row dropDownInfoBox", class w_class_name ]
+                                        [ SS.insertStatusDrawing model w_class_name sensor
+                                        ]
                                     ]
-                                , div [ class "row dropDownInfoBox", class w_class_name ]
-                                    [ SS.insertStatusDrawing model w_class_name sensor
-                                    ]
-                                ]
+                        )
+                        sensors
                     )
-                    sensors
                 )
+                []
             )
-            [ a [ class "btn btn-success", href Routing.getNewSensorPath ] [ text "Add new sensor" ]
-            ]
-        )
+        , p [] []
+        , a [ class "btn btn-success", href Routing.getNewSensorPath ] [ text "Add new sensor" ]
+        ]
 
 
 

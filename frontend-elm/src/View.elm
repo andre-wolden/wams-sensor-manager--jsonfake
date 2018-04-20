@@ -95,7 +95,7 @@ page model =
                 ]
 
         Models.Index ->
-            div [ class "col-10" ]
+            div []
                 [ ul [ class "list-group list-group-flush" ]
                     [ li [ class "list-group-item" ]
                         [ a [ class "text-dark", href Routing.getCustomersPath ]

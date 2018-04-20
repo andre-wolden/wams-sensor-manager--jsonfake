@@ -100,3 +100,36 @@
 	border-bottom-color: black;
 	font-weight: bold;
 }
+.wrapper {
+	margin: auto;
+	position: relative;
+	/* margin-bottom: 20px !important; */
+	width: 1200px;
+	padding-top: 5px;
+}
+
+.scrolls {
+	overflow-x: scroll;
+	white-space:nowrap
+}
+
+
+.horizontal_scrollable_container {
+	white-space: nowrap;
+	overflow-x: scroll;
+	width: 500px;
+}
+
+.inline_block {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	white-space: normal;
+}
+
+
+
+
+
+
+/* END */
