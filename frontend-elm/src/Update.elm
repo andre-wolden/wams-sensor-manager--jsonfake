@@ -116,6 +116,7 @@ update msg model =
             in
                 ( { model | db = newDb }, Cmd.none )
 
+        -- Sensors
         -- PartNumber
         Messages.OnInputNewPartNumber_PartNumber string ->
             let
@@ -240,6 +241,17 @@ update msg model =
 
         Messages.OnOperatorSaved (Err error) ->
             ( model, Cmd.none )
+
+        -- Sensor all view stuff
+        Messages.ExpandRow int ->
+            let
+                updatedDebugMessage =
+                    "Expanding row...?"
+            in
+                if model.expandedRow == int then
+                    ( { model | expandedRow = 0 }, Cmd.none )
+                else
+                    ( { model | expandedRow = int }, Cmd.none )
 
 
 

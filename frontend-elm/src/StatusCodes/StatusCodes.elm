@@ -2,7 +2,8 @@ module StatusCodes.StatusCodes exposing (..)
 
 
 type alias StatusCode =
-    { status : Code
+    { id : Int
+    , status : Code
     , status_description : String
     , next_todo : String
     }
@@ -19,9 +20,23 @@ type Code
     | Delivered
 
 
+statusCodes : List StatusCode
+statusCodes =
+    [ delivered
+    , calibrationCertificateOk
+    , calibrationTested
+    , installed
+    , received
+    , factoryAcceptanceTested
+    , registered
+    , initiated
+    ]
+
+
 initiated : StatusCode
 initiated =
-    { status = Initiated
+    { id = 1
+    , status = Initiated
     , status_description = "Initiated"
     , next_todo = "Register"
     }
@@ -29,7 +44,8 @@ initiated =
 
 registered : StatusCode
 registered =
-    { status = Registered
+    { id = 2
+    , status = Registered
     , status_description = "Registered"
     , next_todo = "Supplier FAT"
     }
@@ -37,7 +53,8 @@ registered =
 
 factoryAcceptanceTested : StatusCode
 factoryAcceptanceTested =
-    { status = FactoryAcceptanceTested
+    { id = 3
+    , status = FactoryAcceptanceTested
     , status_description = "FAT completed"
     , next_todo = "Receive to stock"
     }
@@ -45,7 +62,8 @@ factoryAcceptanceTested =
 
 received : StatusCode
 received =
-    { status = Received
+    { id = 4
+    , status = Received
     , status_description = "On stock"
     , next_todo = "Mount sensor"
     }
@@ -53,7 +71,8 @@ received =
 
 installed : StatusCode
 installed =
-    { status = Installed
+    { id = 5
+    , status = Installed
     , status_description = "Sensor Mounted"
     , next_todo = "Perform calibration testing"
     }
@@ -61,7 +80,8 @@ installed =
 
 calibrationTested : StatusCode
 calibrationTested =
-    { status = CalibrationTested
+    { id = 6
+    , status = CalibrationTested
     , status_description = "Calibration testing completed"
     , next_todo = "Perform calibration analysis and create Calibration Certificate"
     }
@@ -69,7 +89,8 @@ calibrationTested =
 
 calibrationCertificateOk : StatusCode
 calibrationCertificateOk =
-    { status = CalibrationCertificateOk
+    { id = 7
+    , status = CalibrationCertificateOk
     , status_description = "Calibration Certificate Completed"
     , next_todo = "Deliver"
     }
@@ -77,7 +98,8 @@ calibrationCertificateOk =
 
 delivered : StatusCode
 delivered =
-    { status = Delivered
+    { id = 8
+    , status = Delivered
     , status_description = "Delivered"
     , next_todo = "DONE!"
     }

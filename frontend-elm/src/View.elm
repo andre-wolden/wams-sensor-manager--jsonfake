@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (Msg)
 import Views.Sensor.All
+import Views.Sensor.New
 import Views.PartNumber.All
 import Views.PartNumber.New
 import Views.Project.ById
@@ -49,8 +50,9 @@ view model =
                         [ a [ class "nav-link text-light", href Routing.getOperatorsPath ] [ text "Operators" ] ]
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Types" ] ]
-                    , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Codes" ] ]
+
+                    -- , li [ class "nav-item active" ]
+                    --     [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Codes" ] ]
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Mounting" ] ]
                     , li [ class "nav-item active" ]
@@ -63,7 +65,7 @@ view model =
             ]
 
         -- , div [ class "push-to-bottom jumbotron" ]
-        --     [ p [] [ text (toString model.db) ]
+        --     [ p [] [ text "asdf" ] -- (toString model.db) ]
         --     , p [] [ text model.debugMessage ]
         --     ]
         ]
@@ -111,6 +113,10 @@ page model =
                 , p [] []
                 , Views.Sensor.All.insertSensorTable model
                 ]
+
+        -- Sensor new
+        Models.SensorsNewRoute ->
+            Views.Sensor.New.viewNewSensorPage model
 
         -- PartNumbers
         Models.PartNumbersRoute ->

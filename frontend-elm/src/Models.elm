@@ -28,6 +28,10 @@ type alias Model =
     -- , newStatus_log_item : StatusLog
     -- Div
     , nameFieldEmpty : String
+
+    -- ExpandableRows in the SuperTable
+    , rowIsExpanded : Bool
+    , expandedRow : Int
     }
 
 
@@ -54,6 +58,8 @@ initialModel route =
     -- , new_status_log_item = StatusLogItem
     -- Div
     , nameFieldEmpty = ""
+    , rowIsExpanded = False
+    , expandedRow = 0
     }
 
 
@@ -87,6 +93,7 @@ initialDbLoaded =
 
 type Route
     = Home
+    | SensorsNewRoute
     | PartNumbersRoute
     | PartNumbersNewRoute
     | ProjectsRoute

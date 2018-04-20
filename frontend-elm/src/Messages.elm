@@ -39,3 +39,5 @@ type Msg
     | OnInputNewOperator_Name String
     | SaveNewOperator Operator
     | OnOperatorSaved (Result Http.Error Operator)
+      -- Sensor all viewOops
+    | ExpandRow Int

@@ -17,7 +17,7 @@
       "sensor_type": 1,
       "calibration_certificate": "doc_cc_sn002",
       "project": 1,
-      "current_status": 1,
+      "current_status": 2,
       "mounting_location": 1
     },
     {
@@ -27,7 +27,7 @@
       "sensor_type": 1,
       "calibration_certificate": "doc_cc_sn003",
       "project": 1,
-      "current_status": 1,
+      "current_status": 3,
       "mounting_location": 1
     }
   ],
@@ -36,6 +36,16 @@
       "id": 1,
       "pn": "P6000121001",
       "calibration_procedure": "doc_proc_1"
+    },
+    {
+      "id": 2,
+      "pn": "P6000121013",
+      "calibration_procedure": "PROC13"
+    },
+    {
+      "id": 3,
+      "pn": "P6000131033",
+      "calibration_procedure": "PRC131013232323"
     }
   ],
   "sensor_types": [
@@ -56,18 +66,23 @@
     },
     {
       "id": 2,
-      "name": "Snorre B",
-      "customer": 1
+      "name": "Anadarko",
+      "customer": 5
     },
     {
-      "id": 3,
-      "name": "Wheatstone",
+      "id": 5,
+      "name": "Datainn",
+      "customer": 6
+    },
+    {
+      "id": 6,
+      "name": "Plan B",
+      "customer": 5
+    },
+    {
+      "id": 7,
+      "name": "asdf",
       "customer": 2
-    },
-    {
-      "id": 4,
-      "name": "Maria",
-      "customer": 1
     }
   ],
   "customers": [
@@ -81,7 +96,23 @@
     },
     {
       "id": 3,
-      "name": "ByggMakker"
+      "name": "Bekk"
+    },
+    {
+      "id": 4,
+      "name": "Byggmakker"
+    },
+    {
+      "id": 5,
+      "name": "McDonalds"
+    },
+    {
+      "id": 6,
+      "name": "Oslo Kommune"
+    },
+    {
+      "id": 7,
+      "name": "Nordbyen"
     }
   ],
   "mounting_locations": [
@@ -109,7 +140,11 @@
     },
     {
       "id": 3,
-      "name": "Sveinung"
+      "name": "asdf"
+    },
+    {
+      "id": 4,
+      "name": "Meddern"
     }
   ],
   "status_log": [
