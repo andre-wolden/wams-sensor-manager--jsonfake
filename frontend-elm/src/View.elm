@@ -18,8 +18,15 @@ import Views.Customer.Registered
 import Views.Operator.ById exposing (..)
 import Views.Operator.All exposing (..)
 import Views.Operator.New exposing (..)
+import Views.SensorType.All
+import Views.SensorType.New
+import Views.MountingLocation.All
+import Views.MountingLocation.New
 import Views.Common.Oops exposing (..)
+import Views.Log.All
 import Routing
+import RemoteData
+import CommonComponents.Spinner
 
 
 view : Model -> Html Msg
@@ -49,14 +56,14 @@ view model =
                     , li [ class "nav-item active" ]
                         [ a [ class "nav-link text-light", href Routing.getOperatorsPath ] [ text "Operators" ] ]
                     , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Types" ] ]
+                        [ a [ class "nav-link text-light", href Routing.getSensorTypesPath ] [ text "Types" ] ]
 
                     -- , li [ class "nav-item active" ]
                     --     [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Codes" ] ]
                     , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Mounting" ] ]
+                        [ a [ class "nav-link text-light", href Routing.getMountingLocationsPath ] [ text "Mounting" ] ]
                     , li [ class "nav-item active" ]
-                        [ a [ class "nav-link text-light", href Routing.getIndexPath ] [ text "Log" ] ]
+                        [ a [ class "nav-link text-light", href Routing.getLogPath ] [ text "Log" ] ]
                     ]
                 ]
             ]
@@ -163,6 +170,35 @@ page model =
 
         Models.OopeSomethingWentWrongRoute ->
             Views.Common.Oops.viewOops
+
+        -- Sensor types
+        Models.SensorTypesRoute ->
+            Views.SensorType.All.viewAllSensorTypes model.db.sensor_types
+
+        Models.SensorTypesNewRoute ->
+            Views.SensorType.New.viewNewSensorType model
+
+        -- Mounting MountingLocationsRoute
+        Models.MountingLocationsRoute ->
+            Views.MountingLocation.All.viewMountingLocationAll model
+
+        Models.MountingLocationsNewRoute ->
+            Views.MountingLocation.New.viewMountingLocationNewForm
+
+        -- Status Logg
+        Models.StatusLog ->
+            case model.db.status_log of
+                RemoteData.NotAsked ->
+                    CommonComponents.Spinner.insertSpinner
+
+                RemoteData.Loading ->
+                    CommonComponents.Spinner.insertSpinner
+
+                RemoteData.Failure error ->
+                    CommonComponents.Spinner.insertSpinner
+
+                RemoteData.Success status_log ->
+                    Views.Log.All.viewLog status_log
 
 
 

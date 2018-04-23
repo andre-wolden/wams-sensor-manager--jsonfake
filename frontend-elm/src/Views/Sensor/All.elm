@@ -131,7 +131,7 @@ createTable sensors partNumbers types projects statuses model =
                                         (List.map
                                             (\typee ->
                                                 if typee.id == sensor.sensor_type then
-                                                    text typee.sensor_type
+                                                    text typee.description
                                                 else
                                                     text ""
                                             )
@@ -168,7 +168,8 @@ createTable sensors partNumbers types projects statuses model =
                     sensors
                 )
             )
-            [ a [ class "btn btn-success", href Routing.getNewSensorPath ] [ text "Add new sensor" ]
+            [ p [] []
+            , a [ class "btn btn-success", href Routing.getNewSensorPath ] [ text "Add new sensor" ]
             ]
         )
 

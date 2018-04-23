@@ -117,6 +117,69 @@ update msg model =
                 ( { model | db = newDb }, Cmd.none )
 
         -- Sensors
+        Messages.OnInputNewSensor_sn sn ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | sn = sn }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.OnInputNewSensor_pn pn ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | pn = pn }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.OnInputNewSensor_sensor_type sensor_type ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | sensor_type = sensor_type }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.OnInputNewSensor_calibration_certificate cc ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | calibration_certificate = cc }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.OnInputNewSensor_project project ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | project = project }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.OnInputNewSensor_mounting_location mounting_location ->
+            let
+                current =
+                    model.new_sensor
+
+                updated =
+                    { current | mounting_location = mounting_location }
+            in
+                ( { model | new_sensor = updated }, Cmd.none )
+
+        Messages.SaveNewSensor sensor ->
+            ( model, Commands.SaveNewSensor sensor )
+
         -- PartNumber
         Messages.OnInputNewPartNumber_PartNumber string ->
             let

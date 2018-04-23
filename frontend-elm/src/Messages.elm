@@ -20,6 +20,14 @@ type Msg
     | MountingLocationsResponse (WebData MountingLocations)
     | OperatorsResponse (WebData Operators)
     | StatusLogResponse (WebData StatusLog)
+      -- Sensor
+    | OnInputNewSensor_sn String
+    | OnInputNewSensor_pn Int
+    | OnInputNewSensor_sensor_type Int
+    | OnInputNewSensor_calibration_certificate String
+    | OnInputNewSensor_project Int
+    | OnInputNewSensor_mounting_location Int
+    | SaveNewSensor Sensor
       -- Saving New Part PartNumber
     | OnInputNewPartNumber_PartNumber String
     | OnInputNewPartNumber_CalibrationProcedure String

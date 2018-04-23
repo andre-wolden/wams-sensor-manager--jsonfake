@@ -7,7 +7,7 @@
       "sensor_type": 1,
       "calibration_certificate": "doc_cc_sn001",
       "project": 1,
-      "current_status": 1,
+      "current_status": 5,
       "mounting_location": 1
     },
     {
@@ -46,6 +46,11 @@
       "id": 3,
       "pn": "P6000131033",
       "calibration_procedure": "PRC131013232323"
+    },
+    {
+      "id": 4,
+      "pn": "F6000riday",
+      "calibration_procedure": "HFTgif001"
     }
   ],
   "sensor_types": [
@@ -83,6 +88,16 @@
       "id": 7,
       "name": "asdf",
       "customer": 2
+    },
+    {
+      "id": 8,
+      "name": "FridayProject",
+      "customer": 8
+    },
+    {
+      "id": 9,
+      "name": "heihei",
+      "customer": 4
     }
   ],
   "customers": [
@@ -113,6 +128,10 @@
     {
       "id": 7,
       "name": "Nordbyen"
+    },
+    {
+      "id": 8,
+      "name": "FridayCustomer"
     }
   ],
   "mounting_locations": [

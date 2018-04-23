@@ -14,15 +14,10 @@ type alias Model =
     , allDataLoaded : Bool
 
     -- Records to capture onInput
-    -- , new_sensor : Sensor
-    -- , new_part_number : PartNumber
-    -- , new_sensor_type : SensorType
+    , new_sensor : Sensor
     , new_part_number : PartNumber
     , new_project : Project
     , new_customer : Customer
-
-    -- , new_status_code : StatusCode
-    -- , new_mounting_location : MountingLocation
     , new_operator : Operator
 
     -- , newStatus_log_item : StatusLog
@@ -33,6 +28,17 @@ type alias Model =
     , rowIsExpanded : Bool
     , expandedRow : Int
     }
+
+
+
+-- { id : Int
+-- , sn : String
+-- , pn : Int
+-- , sensor_type : Int
+-- , calibration_certificate : String
+-- , project : Int
+-- , current_status : Int
+-- , mounting_location : Int
 
 
 initialModel : Route -> Model
@@ -47,6 +53,7 @@ initialModel route =
     -- , new_sensor = Sensor
     -- , new_part_number = PartNumber
     -- , new_sensor_type = SensorType
+    , new_sensor = { id = 0, sn = "", pn = 0, sensor_type = 0, calibration_certificate = "", project = 0, current_status = 1, mounting_location = 0 }
     , new_part_number = { id = 0, pn = "", calibration_procedure = "" }
     , new_project = { id = 0, name = "", customer = 0 }
     , new_customer = { id = 0, name = "" }
@@ -109,6 +116,11 @@ type Route
     | NotFoundRoute
     | Index
     | OopeSomethingWentWrongRoute
+    | SensorTypesRoute
+    | SensorTypesNewRoute
+    | MountingLocationsRoute
+    | MountingLocationsNewRoute
+    | StatusLog
 
 
 

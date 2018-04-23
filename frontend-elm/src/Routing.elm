@@ -22,8 +22,13 @@ matchers =
         , map OperatorsRoute (s "operators")
         , map OperatorRoute (s "operator" </> string)
         , map OperatorNewRoute (s "operators" </> s "new")
+        , map SensorTypesRoute (s "sensor_types")
+        , map SensorTypesNewRoute (s "sensor_types" </> s "new")
         , map Index (s "index")
         , map OopeSomethingWentWrongRoute (s "oops")
+        , map MountingLocationsRoute (s "mounting_locations")
+        , map MountingLocationsNewRoute (s "mounting_locations" </> s "new")
+        , map StatusLog (s "status_log")
         ]
 
 
@@ -85,3 +90,28 @@ getPartNumberNewPath =
 getOperatorNewPath : String
 getOperatorNewPath =
     "#operators/new"
+
+
+getSensorTypesPath : String
+getSensorTypesPath =
+    "#sensor_types"
+
+
+getSensorTypesNewPath : String
+getSensorTypesNewPath =
+    "#sensor_types/new"
+
+
+getMountingLocationsPath : String
+getMountingLocationsPath =
+    "#mounting_locations"
+
+
+getMountingLocationsNewPath : String
+getMountingLocationsNewPath =
+    "#mounting_locations/new"
+
+
+getLogPath : String
+getLogPath =
+    "#status_log"

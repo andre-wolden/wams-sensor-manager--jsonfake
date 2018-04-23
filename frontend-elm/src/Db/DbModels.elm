@@ -50,7 +50,7 @@ type alias SensorTypes =
 
 type alias SensorType =
     { id : Int
-    , sensor_type : String
+    , description : String
     }
 
 
