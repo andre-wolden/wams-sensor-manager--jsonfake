@@ -9,6 +9,7 @@ import Commands.ProjectCommands
 import Commands.CustomerCommands
 import Commands.OperatorCommands
 import RemoteData
+import Commands.SaveThisThing
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -178,7 +179,7 @@ update msg model =
                 ( { model | new_sensor = updated }, Cmd.none )
 
         Messages.SaveNewSensor sensor ->
-            ( model, Commands.SaveNewSensor sensor )
+            ( model, Commands.SaveThisThing.saveIt sensor )
 
         -- PartNumber
         Messages.OnInputNewPartNumber_PartNumber string ->
