@@ -19,6 +19,7 @@ type alias Model =
     , new_project : Project
     , new_customer : Customer
     , new_operator : Operator
+    , new_mounting_location : MountingLocation
 
     -- , newStatus_log_item : StatusLog
     -- Div
@@ -27,18 +28,8 @@ type alias Model =
     -- ExpandableRows in the SuperTable
     , rowIsExpanded : Bool
     , expandedRow : Int
+    , calibration_certificate_name : String
     }
-
-
-
--- { id : Int
--- , sn : String
--- , pn : Int
--- , sensor_type : Int
--- , calibration_certificate : String
--- , project : Int
--- , current_status : Int
--- , mounting_location : Int
 
 
 initialModel : Route -> Model
@@ -59,7 +50,7 @@ initialModel route =
     , new_customer = { id = 0, name = "" }
 
     -- , new_status_code = StatusCode
-    -- , new_mounting_location = MountingLocation
+    , new_mounting_location = { id = 0, description = "" }
     , new_operator = { id = 0, name = "" }
 
     -- , new_status_log_item = StatusLogItem
@@ -67,6 +58,7 @@ initialModel route =
     , nameFieldEmpty = ""
     , rowIsExpanded = False
     , expandedRow = 0
+    , calibration_certificate_name = ""
     }
 
 

@@ -1,6 +1,7 @@
 module Views.Sensor.SvgStuff exposing (..)
 
 import Html
+import Html.Attributes
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import StatusCodes.StatusCodes as SC
@@ -103,7 +104,7 @@ insertStatusDrawing model w_class_name sensor =
         status_codes =
             SC.statusCodes
     in
-        svg [ width "500", height "600", viewBox "0 0 500 600" ]
+        svg [ width "350", height "400", viewBox "0 0 350 400" ]
             (List.append
                 [ text_ [ x "20", y "40" ] [ Svg.text "Status" ]
                 ]
@@ -158,7 +159,7 @@ keyElement currentStep statusCode =
                 ]
                 []
             , circle [ cx "40", cy y_2, r "13" ] []
-            , text_ [ x "65", y y_2_pluss ] [ Svg.text statusCode.next_todo ]
+            , text_ [ x "65", y y_2_pluss ] [ Svg.text statusCode.status_description ]
             , text_ [ x "5", y y_2_pluss ] [ Svg.text (toString n) ]
             ]
 

@@ -70,11 +70,10 @@ view model =
         , div [ id "page" ]
             [ page model
             ]
-
-        -- , div [ class "push-to-bottom jumbotron" ]
-        --     [ p [] [ text "asdf" ] -- (toString model.db) ]
-        --     , p [] [ text model.debugMessage ]
-        --     ]
+        , div [ class "push-to-bottom jumbotron" ]
+            [ p [] [ text "asdf" ] -- (toString model.db) ]
+            , p [] [ text (toString model.new_sensor) ]
+            ]
         ]
 
 
@@ -83,58 +82,40 @@ page model =
     case model.route of
         Models.Home ->
             div []
-                [ ul [ class "list-group list-group-flush" ]
-                    [ li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getCustomersPath ]
-                            [ text "Customers" ]
-                        ]
-                    , li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getProjectsPath ]
-                            [ text "Projects" ]
-                        ]
-                    , li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getOperatorsPath ]
-                            [ text "Operators" ]
-                        ]
-                    ]
-                , p [] []
+                [ p [] []
                 , Views.Sensor.All.insertSensorTable model
                 ]
 
         Models.Index ->
             div [ class "col-10" ]
-                [ ul [ class "list-group list-group-flush" ]
-                    [ li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getCustomersPath ]
-                            [ text "Customers" ]
-                        ]
-                    , li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getProjectsPath ]
-                            [ text "Projects" ]
-                        ]
-                    , li [ class "list-group-item" ]
-                        [ a [ class "text-dark", href Routing.getOperatorsPath ]
-                            [ text "Operators" ]
-                        ]
-                    ]
+                [ h3 [] [ text " List of Sensors" ]
                 , p [] []
                 , Views.Sensor.All.insertSensorTable model
                 ]
 
         -- Sensor new
         Models.SensorsNewRoute ->
-            Views.Sensor.New.viewNewSensorPage model
+            div []
+                [ h3 [] [ text "New Sensor" ]
+                , Views.Sensor.New.viewNewSensorPage model
+                ]
 
         -- PartNumbers
         Models.PartNumbersRoute ->
-            Views.PartNumber.All.viewAllPartNumbers model.db.part_numbers
+            div []
+                [ h3 [] [ text "Part Numbers" ]
+                , Views.PartNumber.All.viewAllPartNumbers model.db.part_numbers
+                ]
 
         Models.PartNumbersNewRoute ->
             Views.PartNumber.New.viewNewPartNumber model
 
         -- Project
         Models.ProjectsRoute ->
-            Views.Project.All.viewAllProjects model.db.projects model.db.customers
+            div []
+                [ h3 [] [ text "Projects" ]
+                , Views.Project.All.viewAllProjects model.db.projects model.db.customers
+                ]
 
         Models.ProjectRoute idString ->
             Views.Project.ById.viewProjectById model.db.projects idString
@@ -144,7 +125,10 @@ page model =
 
         -- Customer
         Models.CustomersRoute ->
-            Views.Customer.All.viewAllCustomers model.db.customers
+            div []
+                [ h3 [] [ text "Customers" ]
+                , Views.Customer.All.viewAllCustomers model.db.customers
+                ]
 
         Models.CustomerRoute idString ->
             Views.Customer.ById.viewCustomerById model.db.customers idString
@@ -157,7 +141,10 @@ page model =
 
         -- Operator
         Models.OperatorsRoute ->
-            Views.Operator.All.viewAllOperators model.db.operators
+            div []
+                [ h3 [] [ text "Operators" ]
+                , Views.Operator.All.viewAllOperators model.db.operators
+                ]
 
         Models.OperatorRoute idString ->
             Views.Operator.ById.viewOperatorById model.db.operators idString
@@ -173,17 +160,23 @@ page model =
 
         -- Sensor types
         Models.SensorTypesRoute ->
-            Views.SensorType.All.viewAllSensorTypes model.db.sensor_types
+            div []
+                [ h3 [] [ text "Sensor Types" ]
+                , Views.SensorType.All.viewAllSensorTypes model.db.sensor_types
+                ]
 
         Models.SensorTypesNewRoute ->
             Views.SensorType.New.viewNewSensorType model
 
         -- Mounting MountingLocationsRoute
         Models.MountingLocationsRoute ->
-            Views.MountingLocation.All.viewMountingLocationAll model
+            div []
+                [ h3 [] [ text "Mounting Locations" ]
+                , Views.MountingLocation.All.viewMountingLocationAll model
+                ]
 
         Models.MountingLocationsNewRoute ->
-            Views.MountingLocation.New.viewMountingLocationNewForm
+            Views.MountingLocation.New.viewMountingLocationNewForm model
 
         -- Status Logg
         Models.StatusLog ->

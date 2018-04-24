@@ -42,7 +42,7 @@ getMountingLocationTable mountingLocations =
                 ]
             , tbody [] (insertRows mountingLocations)
             ]
-        , a [ class "btn btn-success", href Routing.getSensorTypesNewPath ] [ text "Register new" ]
+        , a [ class "btn btn-success", href Routing.getMountingLocationsNewPath ] [ text "Register new" ]
         ]
 
 

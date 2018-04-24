@@ -28,6 +28,7 @@ type Msg
     | OnInputNewSensor_project Int
     | OnInputNewSensor_mounting_location Int
     | SaveNewSensor Sensor
+    | OnSensorSaved (Result Http.Error Sensor)
       -- Saving New Part PartNumber
     | OnInputNewPartNumber_PartNumber String
     | OnInputNewPartNumber_CalibrationProcedure String
@@ -47,5 +48,15 @@ type Msg
     | OnInputNewOperator_Name String
     | SaveNewOperator Operator
     | OnOperatorSaved (Result Http.Error Operator)
+      -- Mounting Locatino
+    | OnInputMountingLocation String
+    | SaveMountingLocation MountingLocation
+    | OnMountingLocationSaved (Result Http.Error MountingLocation)
       -- Sensor all viewOops
     | ExpandRow Int
+      -- Exandable stuff screen
+    | IncrementSensorStatus Sensor
+    | DecrementSensorStatus Sensor
+    | OnSensorUpdated (Result Http.Error Sensor)
+    | OnInputCalibrationCertificateName String
+    | SaveCalibrationCertificate Sensor

@@ -57,10 +57,6 @@ viewNewSensorPage model =
                         Radio.radioList "radio_list_sensor_type" (List.map funcType sensor_types)
                 )
 
-            -- Calibration Certificate
-            , label [] [ text "Calibration Certificate:" ]
-            , input [ class "form-control", placeholder "asdf ...", onInput OnInputNewSensor_calibration_certificate ] []
-
             -- Project
             , label [] [ text "Project" ]
             , div []

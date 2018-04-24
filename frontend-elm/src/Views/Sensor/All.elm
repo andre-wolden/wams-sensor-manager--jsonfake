@@ -113,9 +113,23 @@ createTable sensors partNumbers types projects statuses model =
                                     "fa fa-minus"
                                 else
                                     "fa fa-plus"
+
+                            w_finished =
+                                if sensor.current_status == 8 then
+                                    "w_background_color_green"
+                                else if sensor.current_status == 7 then
+                                    "w_background_color_orange"
+                                else
+                                    "w_background_color_red"
+
+                            status_codes =
+                                SC.statusCodes
+
+                            status_code_id =
+                                sensor.current_status
                         in
                             div []
-                                [ div [ class "row expandableRow", onClick (ExpandRow sensor.id) ]
+                                [ div [ class "row expandableRow", class w_finished, onClick (ExpandRow sensor.id) ]
                                     [ div [ class "col" ] [ text sensor.sn ]
                                     , div [ class "col" ]
                                         (List.map
@@ -162,6 +176,30 @@ createTable sensors partNumbers types projects statuses model =
                                     ]
                                 , div [ class "row dropDownInfoBox", class w_class_name ]
                                     [ SS.insertStatusDrawing model w_class_name sensor
+                                    , div [ class "jumbotronMaster" ]
+                                        [ div [ class "jumbotron infoCard" ]
+                                            [ div
+                                                []
+                                                (List.append
+                                                    [ h4 [] [ text "Update Status" ]
+                                                    , button [ class "btn btn-danger", onClick (DecrementSensorStatus sensor) ] [ text "Back" ]
+                                                    , p [] []
+                                                    , button [ class "btn btn-success", onClick (IncrementSensorStatus sensor) ] [ text "Done!" ]
+                                                    , p [ class "row" ] [ text "Next on the TODO list: " ]
+                                                    ]
+                                                    (List.map
+                                                        (\status_code ->
+                                                            if status_code.id == status_code_id then
+                                                                p [] [ text status_code.next_todo ]
+                                                            else
+                                                                p [] [ text "" ]
+                                                        )
+                                                        status_codes
+                                                    )
+                                                )
+                                            ]
+                                        ]
+                                    , div [ class "jumbotron infoCard" ] (insertCalibrationCertificateForm sensor)
                                     ]
                                 ]
                     )
@@ -172,6 +210,18 @@ createTable sensors partNumbers types projects statuses model =
             , a [ class "btn btn-success", href Routing.getNewSensorPath ] [ text "Add new sensor" ]
             ]
         )
+
+
+insertCalibrationCertificateForm : Sensor -> List (Html Msg)
+insertCalibrationCertificateForm sensor =
+    if sensor.current_status == 6 then
+        [ h4 [] [ text "Calibration Certificate" ]
+        , label [] [ text "Document number:" ]
+        , input [ class "form-control", placeholder sensor.calibration_certificate, onInput OnInputCalibrationCertificateName ] []
+        , button [ class "btn btn-success", onClick (SaveCalibrationCertificate sensor) ] [ text "Save" ]
+        ]
+    else
+        []
 
 
 

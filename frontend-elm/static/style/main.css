@@ -64,6 +64,18 @@
 	cursor: pointer;
 }
 
+.w_background_color_green {
+	background-color: rgba(124,252,0,0.3);
+}
+
+.w_background_color_orange{
+	background-color: rgba(255,165,0,0.3);
+}
+
+.w_background_color_red{
+	background-color: rgba(255,0,0,0.3);
+
+}
 
 .w_hidden {
 	/* display: none; */
@@ -79,13 +91,14 @@
 	/* display: block; */
 	visibility: visible;
 	transition: 0.5s;
-	height: 500px;
+	height: 400px;
 	/* font-size: 16px; */
 }
 
 
 .dropDownInfoBox {
 
+	padding-left: 100px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: black;
@@ -99,4 +112,12 @@
 	border-bottom-width: 1px;
 	border-bottom-color: black;
 	font-weight: bold;
+}
+
+
+.infoCard {
+	/* display: inline; */
+	margin-top: 30px;
+	margin-left: 10px;
+	max-width: 300px;
 }

@@ -4,10 +4,12 @@ import Models exposing (..)
 import Messages exposing (Msg)
 import Routing exposing (parseLocation)
 import Commands
+import Commands.SensorCommands
 import Commands.PartNumberCommands
 import Commands.ProjectCommands
 import Commands.CustomerCommands
 import Commands.OperatorCommands
+import Commands.MountingLocationCommands
 import RemoteData
 
 
@@ -178,7 +180,13 @@ update msg model =
                 ( { model | new_sensor = updated }, Cmd.none )
 
         Messages.SaveNewSensor sensor ->
-            ( model, Commands.SaveNewSensor sensor )
+            ( model, Commands.SensorCommands.saveSensor sensor )
+
+        Messages.OnSensorSaved (Ok sensor) ->
+            ( { model | route = Index }, Commands.fetchSensorsData )
+
+        Messages.OnSensorSaved (Err error) ->
+            ( model, Cmd.none )
 
         -- PartNumber
         Messages.OnInputNewPartNumber_PartNumber string ->
@@ -305,6 +313,33 @@ update msg model =
         Messages.OnOperatorSaved (Err error) ->
             ( model, Cmd.none )
 
+        -- Mounting Locations
+        Messages.OnInputMountingLocation string ->
+            let
+                current =
+                    model.new_mounting_location
+
+                updated =
+                    { current | description = string }
+            in
+                ( { model | new_mounting_location = updated }, Cmd.none )
+
+        Messages.SaveMountingLocation mounting_location ->
+            ( model, Commands.MountingLocationCommands.saveMountingLocation mounting_location )
+
+        Messages.OnMountingLocationSaved (Ok response) ->
+            let
+                current =
+                    model.new_mounting_location
+
+                updated =
+                    { current | description = "" }
+            in
+                ( { model | new_mounting_location = updated }, Commands.fetchMountingLocationsData )
+
+        Messages.OnMountingLocationSaved (Err error) ->
+            ( model, Cmd.none )
+
         -- Sensor all view stuff
         Messages.ExpandRow int ->
             let
@@ -315,6 +350,42 @@ update msg model =
                     ( { model | expandedRow = 0 }, Cmd.none )
                 else
                     ( { model | expandedRow = int }, Cmd.none )
+
+        Messages.IncrementSensorStatus sensor ->
+            let
+                current =
+                    sensor
+
+                incremented =
+                    { sensor | current_status = sensor.current_status + 1 }
+            in
+                ( model, Commands.SensorCommands.updateSensor incremented )
+
+        Messages.DecrementSensorStatus sensor ->
+            let
+                current =
+                    sensor
+
+                decremented =
+                    { sensor | current_status = sensor.current_status - 1 }
+            in
+                ( model, Commands.SensorCommands.updateSensor decremented )
+
+        Messages.OnSensorUpdated (Ok response) ->
+            ( { model | route = Index }, Commands.fetchSensorsData )
+
+        Messages.OnSensorUpdated (Err error) ->
+            ( model, Cmd.none )
+
+        Messages.OnInputCalibrationCertificateName cc_name ->
+            ( { model | calibration_certificate_name = cc_name }, Cmd.none )
+
+        Messages.SaveCalibrationCertificate sensor ->
+            let
+                withCalibrationCertificate =
+                    { sensor | calibration_certificate = model.calibration_certificate_name }
+            in
+                ( model, Commands.SensorCommands.updateSensor withCalibrationCertificate )
 
 
 
